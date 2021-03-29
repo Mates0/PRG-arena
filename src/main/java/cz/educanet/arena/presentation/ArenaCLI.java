@@ -63,25 +63,37 @@ public class ArenaCLI {
      * Fight until one gladiator dies, or surrenders.
      */
     public void renderEntireFight() {
-        Gladiator gladiator1 = logic.getGladiator1();
-        Gladiator gladiator2 = logic.getGladiator2();
+        float onehp1 = (float)logic.getGladiator1().getHp() / 20;
+        float onehp2 = (float)logic.getGladiator2().getHp() / 20;
+        String health1 = "";
+        String health2 = "";
         while (logic.getWinner() == null) {
             logic.fight();
+            float a = logic.getGladiator1().getHp() / onehp1;
+            float b = logic.getGladiator2().getHp() / onehp2;
+            for (int i = 0; i < a; i++) {
+                health1 += "#";
+            }
+            for (int i = 0; i < b; i++) {
+                health2 += "#";
+            }
             System.out.println("------------------------" + logic.getRound() + ". kolo -------------");
             System.out.println("Zdraví bojovníků: ");
-            System.out.println(gladiator2.getName() + ":" + gladiator2.getHp() + "hp");
-            System.out.println(gladiator1.getName() + ":" + gladiator1.getHp() + "hp");
-            System.out.println(gladiator1.getName() + " " + "útočí s úderem za" + " " +  gladiator1.getDamage() + "hp");
-            System.out.println(gladiator2.getName() + " " + "útočí s úderem za" + " " +  gladiator2.getDamage() + "hp");
-        }
-        if (logic.getWinner() == gladiator1) {
-            System.out.println("Vyhrává" + " " + gladiator1.getName());
-            System.exit(0);
-        }
-        if (logic.getWinner() == gladiator2) {
-            System.out.println("Vyhrává" + " " + gladiator2.getName());
-            System.exit(0);
+            System.out.println(logic.getGladiator2().getName() + ":[" + health2 + "]");
+            System.out.println(logic.getGladiator1().getName() + ":[" + health1 + "]");
+            System.out.println(logic.getGladiator1().getName() + " " + "útočí s úderem za" + " " + logic.getGladiator1().getDamage() + "hp");
+            System.out.println(logic.getGladiator2().getName() + " " + "útočí s úderem za" + " " + logic.getGladiator2().getDamage() + "hp");
+            health1 = "";
+            health2 = "";
+            if (logic.getWinner() == logic.getGladiator1()) {
+                System.out.println("Vyhrává" + " " + logic.getGladiator1().getName());
+                System.exit(0);
+            }
+            if (logic.getWinner() == logic.getGladiator2()) {
+                System.out.println("Vyhrává" + " " + logic.getGladiator2().getName());
+                System.exit(0);
+            }
         }
     }
-
 }
+

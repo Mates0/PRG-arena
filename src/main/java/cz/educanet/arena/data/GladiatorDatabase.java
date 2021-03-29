@@ -27,9 +27,9 @@ public class GladiatorDatabase {
 
             br.close();
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println("error");
         }
-        return null;
+        return gladiator;
     }
 
     /**
