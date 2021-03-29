@@ -1,0 +1,4 @@
+Jméno:davey
+Životy:100
+Minimální poškození:10
+Maximální poškození:20
